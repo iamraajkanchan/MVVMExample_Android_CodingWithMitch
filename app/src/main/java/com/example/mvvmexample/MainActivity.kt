@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mMainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
-        mMainActivityViewModel!!.initialize()
-        mMainActivityViewModel!!.getNicePlaces().observe(this, Observer {
+        mMainActivityViewModel = ViewModelProviders.of(this)[MainActivityViewModel::class.java]
+        mMainActivityViewModel?.initialize()
+        mMainActivityViewModel?.getNicePlaces()?.observe(this, Observer {
             myAdapter?.notifyDataSetChanged()
         })
         initRecyclerView()
