@@ -1,6 +1,5 @@
 package com.example.mvvmexample.repositories
 
-import androidx.lifecycle.MutableLiveData
 import com.example.mvvmexample.models.NicePlace
 
 class NicePlaceRepository {
@@ -14,11 +13,9 @@ class NicePlaceRepository {
     }
 
     // Pretend to get data from Web Service or Online Source
-    fun getNicePlaces(): MutableLiveData<List<NicePlace>> {
+    fun getNicePlaces(): List<NicePlace> {
         setNicePlaces()
-        val data = MutableLiveData<List<NicePlace>>()
-        data.value = dataSet
-        return data
+        return dataSet
     }
 
     private fun setNicePlaces() {

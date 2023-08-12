@@ -7,20 +7,17 @@ import com.example.mvvmexample.models.NicePlace
 import com.example.mvvmexample.repositories.NicePlaceRepository
 
 class MainActivityViewModel : ViewModel() {
-    private var mNicePlaces = MutableLiveData<List<NicePlace>>()
-    private var mNicePlaceRepository: NicePlaceRepository = NicePlaceRepository.getInstance()
+    private val _nicePlaces: MutableLiveData<List<NicePlace>> = MutableLiveData()
+    val nicePlaces: LiveData<List<NicePlace>> get() = _nicePlaces
+    private var repository: NicePlaceRepository = NicePlaceRepository.getInstance()
     private var mIsUpdating: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun initialize() {
-        mNicePlaces = mNicePlaceRepository.getNicePlaces()
+    init {
+        _nicePlaces.value = repository.getNicePlaces()
     }
 
     fun addNewValue(nicePlace: NicePlace) {
         mIsUpdating.value = true
-    }
-
-    fun getNicePlaces(): LiveData<List<NicePlace>> {
-        return mNicePlaces
     }
 
 }
